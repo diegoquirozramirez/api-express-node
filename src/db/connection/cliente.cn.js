@@ -6,10 +6,10 @@ let connection;
 class ClienteConnection {
   static async getInstanceMySql() {
     connection = mysql.createConnection({
-      host: "localhost",//process.env.CONVERTI_CLOUD_HOST,
-      database: "cliente", //process.env.CONVERTI_DATABASE_NAME,
-      user: "root", //process.env.CONVERTI_CLOUD_USER,
-      password: "123456", //process.env.CONVERTI_CLOUD_PASSWORD,
+      host: process.env.CLOUD_HOST,
+      database: process.env.DATABASE_NAME,
+      user: process.env.CLOUD_USER,
+      password: process.env.CLOUD_PASSWORD,
     });
     connection.connect();
   }
