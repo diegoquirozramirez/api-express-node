@@ -29,7 +29,8 @@ class ClienteConnection {
   }
 
   static async finishInstanceMySql(){
-    await connection.end();
+    const db = util.promisify(connection.release).bind(connection);
+    await db();
   }
 
   static dataBinding(statement, values){
