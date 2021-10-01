@@ -20,17 +20,17 @@ class ClienteConnection {
         const db = util.promisify(connection.query).bind(connection);
         const query = this.dataBinding(statement, values);
         const result = await db(query);
-        await this.finishInstanceMySql();
         return result || [];
     } catch (error) {
         console.error(error);
         await this.finishInstanceMySql();
+    } finally {
+      await this.finishInstanceMySql();
     }
   }
 
   static async finishInstanceMySql(){
-    const db = util.promisify(connection.release).bind(connection);
-    await db();
+    await connection.end();
   }
 
   static dataBinding(statement, values){
