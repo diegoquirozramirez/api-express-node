@@ -4,8 +4,7 @@ const ClienteValidator = require('../validators/cliente.validator');
 class ClienteController {
     static async crearNuevoCliente(payload = {}) {
         await ClienteValidator.crearNuevoCliente(payload);
-        const result = await ClienteService.crearNuevoCliente(payload);
-        return result;
+        return await ClienteService.crearNuevoCliente(payload);
     }
     static async obtenerPromedioClientes() {
         try {
